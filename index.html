@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+
+    <script>
+
+const weapon = ["rock", "paper", "scissors"]
+
+function getComputerChoice() {
+return weapon[Math.floor(Math.random() * weapon.length)]
+}
+
+let computerSelection = getComputerChoice()
+
+function rps (playerSelection, computerSelection) {
+if (playerSelection === computerSelection){
+    let message = "That was a tie!"
+    return message
+}
+else if (playerSelection == "rock" && computerSelection == "paper"){  
+    let message = `You chose ${playerSelection} and the computer chose
+        ${computerSelection}. You lose!`
+    return message
+    }
+else if (playerSelection == "rock" && computerSelection == "scissors"){
+    let message = `You chose ${playerSelection} and the computer chose
+        ${computerSelection}. You win!`
+    return message
+    }
+else if (playerSelection == "paper" && computerSelection == "rock"){
+    let message = `You chose ${playerSelection} and the computer chose
+        ${computerSelection}. You win!`
+    return message
+    }
+else if (playerSelection == "paper" && computerSelection == "scissors"){
+    let message =`You chose ${playerSelection} and the computer chose
+        ${computerSelection}. You lose!`
+    return message
+    }
+else if (playerSelection == "scissors" && computerSelection == "paper"){
+    let message = `You chose ${playerSelection} and the computer chose
+        ${computerSelection}. You win!`
+    return message
+    }
+else if (playerSelection == "scissors" && computerSelection == "rock"){
+    let message = `You chose ${playerSelection} and the computer chose
+        ${computerSelection}. You lose!`
+    return message
+    }
+}
+
+playerScore = 0
+computerScore = 0
+
+function game() {
+    for (let i = 1; i <= 5; i++){
+    let playerSelection = prompt("Rock, Paper, or Scissors? Choose your weapon!")
+    let computerSelection = getComputerChoice()
+    let result = rps(playerSelection, computerSelection)
+    console.log(result)
+    if (result.includes("win")){
+        playerScore = ++playerScore
+         
+    } else if (result.includes("lose")){
+        computerScore = ++computerScore
+    }
+    }
+    console.log(`You have ${playerScore} points; The computer 
+has ${computerScore} points.`)
+    if (playerScore === computerScore){
+        console.log("It's a tie!")
+    } else if (playerScore > computerScore) {
+        console.log("You win!")
+    } else {
+        console.log ("You lose!")
+    }
+}
+
+console.log(game())
+
+    </script>
+
+  </body>
+</html>
