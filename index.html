@@ -7,17 +7,52 @@
     <title>Rock Paper Scissors</title>
   </head>
   <body>
+    <h1>Choose Your Weapon!</h1>
+    <div id="choice">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
 
     <script>
 
-const weapon = ["rock", "paper", "scissors"]
+//Get user input
+let btn = document.querySelector("#choice")
 
-function getComputerChoice() {
-return weapon[Math.floor(Math.random() * weapon.length)]
+function round (e) {
+    let playerSelection = ""
+    let target = e.target
+    switch (target.id){
+        case "rock" :
+            playerSelection = "rock"
+            break
+        case "paper" :
+            playerSelection = "paper"
+            break
+        case "scissors" : 
+            playerSelection = "scissors"
+            break
+    }
+    
+    //Randomly generate rock, paper, or scissors
+    const weapon = ["rock", "paper", "scissors"]
+    function getComputerChoice() {
+    return weapon[Math.floor(Math.random() * weapon.length)]
+    }
+    let computerSelection = getComputerChoice()
+
+    //Display result on page
+    let msg = document.createElement('div')
+    msg.style.marginTop = "16px"
+    msg.textContent = rps(playerSelection, computerSelection)
+    let body = document.querySelector('body')
+    body.appendChild(msg)
 }
 
-let computerSelection = getComputerChoice()
+//Add click event to button
+btn.addEventListener("click", round)
 
+//Function for one round of rock paper scissors
 function rps (playerSelection, computerSelection) {
 if (playerSelection === computerSelection){
     let message = "That was a tie!"
@@ -40,7 +75,7 @@ else if (playerSelection == "paper" && computerSelection == "rock"){
     }
 else if (playerSelection == "paper" && computerSelection == "scissors"){
     let message =`You chose ${playerSelection} and the computer chose
-        ${computerSelection}. You lose!`
+       ${computerSelection}. You lose!`
     return message
     }
 else if (playerSelection == "scissors" && computerSelection == "paper"){
@@ -55,34 +90,33 @@ else if (playerSelection == "scissors" && computerSelection == "rock"){
     }
 }
 
-playerScore = 0
-computerScore = 0
+//playerScore = 0
+//computerScore = 0
 
-function game() {
-    for (let i = 1; i <= 5; i++){
-    let playerSelection = prompt("Rock, Paper, or Scissors? Choose your weapon!")
-    let computerSelection = getComputerChoice()
-    let result = rps(playerSelection, computerSelection)
-    console.log(result)
-    if (result.includes("win")){
-        playerScore = ++playerScore
-         
-    } else if (result.includes("lose")){
-        computerScore = ++computerScore
-    }
-    }
-    console.log(`You have ${playerScore} points; The computer 
-has ${computerScore} points.`)
-    if (playerScore === computerScore){
-        console.log("It's a tie!")
-    } else if (playerScore > computerScore) {
-        console.log("You win!")
-    } else {
-        console.log ("You lose!")
-    }
-}
+//function game() {
+//    for (let i = 1; i <= 5; i++){
+//    let playerSelection = prompt("Rock, Paper, or Scissors? Choose your weapon!")
+//    let computerSelection = getComputerChoice()
+//    let result = rps(playerSelection, computerSelection)
+//    console.log(result)
+//    if (result.includes("win")){
+//        playerScore = ++playerScore
+//         
+//    } else if (result.includes("lose")){
+//        computerScore = ++computerScore
+//    }
+//    }
+//    console.log(`You have ${playerScore} points; The computer 
+//has ${computerScore} points.`)
+//    if (playerScore === computerScore){
+//        console.log("It's a tie!")
+//    } else if (playerScore > computerScore) {
+//        console.log("You win!")
+//    } else {
+//        console.log ("You lose!")
+//    }
+//}
 
-console.log(game())
 
     </script>
 
